@@ -1,9 +1,7 @@
 package com.example.moviles_vinils_app_grupo_32.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.example.moviles_vinils_app_grupo_32.models.Album
 import com.example.moviles_vinils_app_grupo_32.repositories.AlbumRepository
 
@@ -44,13 +42,13 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         _isNetworkErrorShown.value = true
     }
 
-//    class Factory(val app: Application) : ViewModelProvider.Factory {
-//        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-//            if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
-//                @Suppress("UNCHECKED_CAST")
-//                return AlbumViewModel(app) as T
-//            }
-//            throw IllegalArgumentException("Unable to construct viewmodel")
-//        }
-//    }
+    class Factory (val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return AlbumViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
 }
