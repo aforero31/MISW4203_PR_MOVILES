@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">moviles-vinils-app-grupo-32</string>
     <string name="title_menu">Vinils-APP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="collector_title">Collector Menu</string>
+    <string name="usuario_title">Usuario Menu</string>
+    <string name="boton_albums">Albums</string>
+    <string name="boton_artistas">Artistas</string>
 </resources>
