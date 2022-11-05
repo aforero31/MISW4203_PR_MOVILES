@@ -1,26 +1,36 @@
 package com.example.moviles_vinils_app_grupo_32.ui
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.moviles_vinils_app_grupo_32.R
 import com.example.moviles_vinils_app_grupo_32.databinding.MenuUsuarioFragmentBinding
 
-class MenuUsuarioFragment : Fragment() {
-
-    private var _binding: MenuUsuarioFragmentBinding? = null
-    private val binding get() = _binding!!
+class MenuUsuarioFragment : Fragment(), OnClickListener {
+    var _navHostFragment: NavHostFragment? = null
+    var _navController: NavController? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = MenuUsuarioFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        _navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        _navController = _navHostFragment!!.navController
+        val view = inflater?.inflate(R.layout.menu_usuario_fragment, container, false)
+        val userMenuButton: Button = view.findViewById(R.id.button3)
+        userMenuButton.setOnClickListener(this);
+        val collectorMenuButton: Button = view.findViewById(R.id.button4)
+        userMenuButton.setOnClickListener(this);
+        collectorMenuButton.setOnClickListener(this)
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,4 +39,10 @@ class MenuUsuarioFragment : Fragment() {
 
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.button3 -> _navController?.navigate(R.id.action_menuUsuarioFragment_to_albumFragment)
+            //R.id.button4 -> _navController?.navigate(R.id.action_usersFragment_to_menuCollectorFragment)
+        }
+    }
 }

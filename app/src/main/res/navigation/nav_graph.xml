@@ -21,10 +21,19 @@
         android:id="@+id/menuUsuarioFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.MenuUsuarioFragment"
         android:label="menu_usuario_fragment"
-        tools:layout="@layout/menu_usuario_fragment" />
+        tools:layout="@layout/menu_usuario_fragment" >
+        <action
+            android:id="@+id/action_menuUsuarioFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menuCollectorFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.MenuCollectorFragment"
         android:label="fragment_menu_collector"
         tools:layout="@layout/fragment_menu_collector" />
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.AlbumFragment"
+        android:label="album_fragment"
+        tools:layout="@layout/album_fragment" />
 </navigation>
