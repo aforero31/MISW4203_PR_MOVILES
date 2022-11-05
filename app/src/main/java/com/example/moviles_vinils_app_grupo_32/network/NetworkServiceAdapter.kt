@@ -10,11 +10,12 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.moviles_vinils_app_grupo_32.models.Album
 import com.example.moviles_vinils_app_grupo_32.models.Musician
+import com.example.moviles_vinils_app_grupo_32.models.Performers
 import org.json.JSONArray
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
-        const val BASE_URL= "back-vynils-equipo-32.herokuapp.com/"
+        const val BASE_URL= "https://back-vynils-equipo-32.herokuapp.com/"
         var instance: NetworkServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -41,13 +42,27 @@ class NetworkServiceAdapter constructor(context: Context) {
                                     recordLabel = item.getString("recordLabel"),
                                     releaseDate = item.getString("releaseDate"),
                                     genre = item.getString("genre"),
-                                    description = item.getString("description")))
+                                    description = item.getString("description"),
+                                    performers = getListPerformers(item.getJSONArray("performers"))
+                            ))
                 }
                 onComplete(list)
             },
             Response.ErrorListener {
                 onError(it)
             }))
+    }
+
+    private fun getListPerformers(listPerformers: JSONArray): List<Performers> {
+        val list = mutableListOf<Performers>()
+        for (i in 0 until listPerformers.length()) {
+            val item = listPerformers.getJSONObject(i)
+            list.add(i, Performers(id = item.getInt("id"),
+                                    name= item.getString("name"),
+                                    image = item.getString("image"),
+                                    description = item.getString("description")))
+        }
+        return list
     }
 
     fun getAlbum(albumId: Int, onComplete:(resp:Album)->Unit, onError: (error:VolleyError)->Unit){
@@ -61,7 +76,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                     recordLabel = item.getString("recordLabel"),
                     releaseDate = item.getString("releaseDate"),
                     genre = item.getString("genre"),
-                    description = item.getString("description"))
+                    description = item.getString("description"),
+                    performers = getListPerformers(item.getJSONArray("performers")
+                ))
                 onComplete(album)
             },
             Response.ErrorListener {
