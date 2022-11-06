@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_menuUsuarioFragment_to_albumFragment"
             app:destination="@id/albumFragment" />
+        <action
+            android:id="@+id/action_menuUsuarioFragment_to_musicianFragment2"
+            app:destination="@id/musicianFragment2" />
     </fragment>
     <fragment
         android:id="@+id/menuCollectorFragment"
@@ -36,4 +39,9 @@
         android:name="com.example.moviles_vinils_app_grupo_32.ui.AlbumFragment"
         android:label="album_fragment"
         tools:layout="@layout/album_fragment" />
+    <fragment
+        android:id="@+id/musicianFragment2"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.MusicianFragment"
+        android:label="musician_fragment"
+        tools:layout="@layout/musician_fragment" />
 </navigation>
