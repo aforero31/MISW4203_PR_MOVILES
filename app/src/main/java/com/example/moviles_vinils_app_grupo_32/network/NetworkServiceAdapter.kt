@@ -12,6 +12,7 @@ import com.example.moviles_vinils_app_grupo_32.models.Album
 import com.example.moviles_vinils_app_grupo_32.models.Musician
 import com.example.moviles_vinils_app_grupo_32.models.Performers
 import org.json.JSONArray
+import org.json.JSONObject
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
@@ -43,7 +44,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                                     releaseDate = item.getString("releaseDate"),
                                     genre = item.getString("genre"),
                                     description = item.getString("description"),
-                                    performers = getListPerformers(item.getJSONArray("performers"))
+                                    performers = getListPerformers(item.getJSONArray("performers")),
+                                    tracksString = getListTracks(item.getJSONArray("tracks"))
                             ))
                 }
                 onComplete(list)
@@ -51,6 +53,23 @@ class NetworkServiceAdapter constructor(context: Context) {
             Response.ErrorListener {
                 onError(it)
             }))
+    }
+
+    private fun getListTracks(listTracks: JSONArray): String {
+
+        var stringList = StringBuilder()
+        for (i in 0 until listTracks.length()) {
+            val item = listTracks.getJSONObject(i)
+            stringList.append(
+                i,
+                ". ",
+                item.getString("name"),
+                " - ",
+                item.getString("duration"),
+                "\n"
+            )
+        }
+        return stringList.toString()
     }
 
     private fun getListPerformers(listPerformers: JSONArray): List<Performers> {
@@ -68,17 +87,17 @@ class NetworkServiceAdapter constructor(context: Context) {
     fun getAlbum(albumId: Int, onComplete:(resp:Album)->Unit, onError: (error:VolleyError)->Unit){
         requestQueue.add(getRequest("albums/$albumId",
             Response.Listener<String> { response ->
-                val resp = JSONArray(response)
-                val item = resp.getJSONObject(0)
-                val album = Album(albumId = item.getInt("id"),
-                    name = item.getString("name"),
-                    cover = item.getString("cover"),
-                    recordLabel = item.getString("recordLabel"),
-                    releaseDate = item.getString("releaseDate"),
-                    genre = item.getString("genre"),
-                    description = item.getString("description"),
-                    performers = getListPerformers(item.getJSONArray("performers")
-                ))
+                val resp = JSONObject(response)
+                val album = Album(albumId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    cover = resp.getString("cover"),
+                    recordLabel = resp.getString("recordLabel"),
+                    releaseDate = resp.getString("releaseDate"),
+                    genre = resp.getString("genre"),
+                    description = resp.getString("description"),
+                    performers = getListPerformers(resp.getJSONArray("performers")),
+                    tracksString = getListTracks(resp.getJSONArray("tracks"))
+                )
                 onComplete(album)
             },
             Response.ErrorListener {
