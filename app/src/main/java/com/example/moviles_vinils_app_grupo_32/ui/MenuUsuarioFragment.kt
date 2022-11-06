@@ -1,18 +1,15 @@
 package com.example.moviles_vinils_app_grupo_32.ui
 
-import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.moviles_vinils_app_grupo_32.R
-import com.example.moviles_vinils_app_grupo_32.databinding.MenuUsuarioFragmentBinding
 
 class MenuUsuarioFragment : Fragment(), OnClickListener {
     var _navHostFragment: NavHostFragment? = null
@@ -24,7 +21,6 @@ class MenuUsuarioFragment : Fragment(), OnClickListener {
     ): View? {
         _navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         _navController = _navHostFragment!!.navController
-        feature/view-Albums-integration
         val view = inflater.inflate(R.layout.menu_usuario_fragment, container, false)
 
         val userMenuButton: Button = view.findViewById(R.id.button3)
