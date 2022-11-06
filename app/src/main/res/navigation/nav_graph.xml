@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/usersFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.UsersFragment"
-        android:label="users_fragment"
+        android:label="@string/title_home_fragment"
         tools:layout="@layout/users_fragment" >
         <action
             android:id="@+id/action_usersFragment_to_menuUsuarioFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/menuUsuarioFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.MenuUsuarioFragment"
-        android:label="menu_usuario_fragment"
+        android:label="@string/title_menu_usuario_fragment"
         tools:layout="@layout/menu_usuario_fragment" >
         <action
             android:id="@+id/action_menuUsuarioFragment_to_albumFragment"
@@ -32,12 +32,12 @@
     <fragment
         android:id="@+id/menuCollectorFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.MenuCollectorFragment"
-        android:label="fragment_menu_collector"
+        android:label="@string/title_menu_collector_fragment"
         tools:layout="@layout/fragment_menu_collector" />
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.AlbumFragment"
-        android:label="album_fragment"
+        android:label="@string/title_album_fragment"
         tools:layout="@layout/album_fragment" >
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
@@ -46,12 +46,12 @@
     <fragment
         android:id="@+id/musicianFragment2"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.MusicianFragment"
-        android:label="musician_fragment"
+        android:label="@string/title_musician_fragment"
         tools:layout="@layout/musician_fragment" />
     <fragment
         android:id="@+id/albumDetailFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.AlbumDetailFragment"
-        android:label="AlbumDetailFragment" >
+        android:label="@string/title_album_detail_fragment" >
         <argument
             android:name="albumId"
             app:argType="integer" />
