@@ -28,12 +28,21 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    app:imageUrl= "@{musician.image}"/>
+
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_black"
                     android:text="@{musician.name}"
-                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+                    android:textAppearance="?attr/textAppearanceHeadline5" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
