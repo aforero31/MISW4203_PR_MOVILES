@@ -24,7 +24,9 @@ class MenuUsuarioFragment : Fragment(), OnClickListener {
     ): View? {
         _navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         _navController = _navHostFragment!!.navController
-        val view = inflater?.inflate(R.layout.menu_usuario_fragment, container, false)
+        feature/view-Albums-integration
+        val view = inflater.inflate(R.layout.menu_usuario_fragment, container, false)
+
         val userMenuButton: Button = view.findViewById(R.id.button3)
         userMenuButton.setOnClickListener(this);
         val collectorMenuButton: Button = view.findViewById(R.id.button4)
