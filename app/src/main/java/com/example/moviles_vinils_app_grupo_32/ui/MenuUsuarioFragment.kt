@@ -24,9 +24,9 @@ class MenuUsuarioFragment : Fragment(), OnClickListener {
         val view = inflater.inflate(R.layout.menu_usuario_fragment, container, false)
 
         val userMenuButton: Button = view.findViewById(R.id.button3)
-        userMenuButton.setOnClickListener(this);
+        userMenuButton.setOnClickListener(this)
         val collectorMenuButton: Button = view.findViewById(R.id.button4)
-        userMenuButton.setOnClickListener(this);
+        userMenuButton.setOnClickListener(this)
         collectorMenuButton.setOnClickListener(this)
         return view
     }
@@ -34,13 +34,12 @@ class MenuUsuarioFragment : Fragment(), OnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activity?.actionBar?.title= getString(R.string.title_menu)
-
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.button3 -> _navController?.navigate(R.id.action_menuUsuarioFragment_to_albumFragment)
-            //R.id.button4 -> _navController?.navigate(R.id.action_usersFragment_to_menuCollectorFragment)
+            R.id.button4 -> _navController?.navigate(R.id.action_menuUsuarioFragment_to_musicianFragment2)
         }
     }
 }
