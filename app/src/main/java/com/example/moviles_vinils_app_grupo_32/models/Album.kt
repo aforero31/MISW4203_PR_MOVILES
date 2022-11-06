@@ -8,5 +8,6 @@ data class Album (
     val description:String,
     val genre:String,
     val recordLabel:String,
-    val performers: List<Performers>
+    val performers: List<Performers>,
+    val tracksString: String
 )

@@ -43,7 +43,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                                     releaseDate = item.getString("releaseDate"),
                                     genre = item.getString("genre"),
                                     description = item.getString("description"),
-                                    performers = getListPerformers(item.getJSONArray("performers"))
+                                    performers = getListPerformers(item.getJSONArray("performers")),
+                                    tracksString = getListTracks(item.getJSONArray("tracks"))
                             ))
                 }
                 onComplete(list)
@@ -51,6 +52,23 @@ class NetworkServiceAdapter constructor(context: Context) {
             Response.ErrorListener {
                 onError(it)
             }))
+    }
+
+    private fun getListTracks(listTracks: JSONArray): String {
+
+        var stringList = StringBuilder()
+        for (i in 0 until listTracks.length()) {
+            val item = listTracks.getJSONObject(i)
+            stringList.append(
+                i,
+                ". ",
+                item.getString("name"),
+                " - ",
+                item.getString("duration"),
+                "\n"
+            )
+        }
+        return stringList.toString()
     }
 
     private fun getListPerformers(listPerformers: JSONArray): List<Performers> {
@@ -77,8 +95,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                     releaseDate = item.getString("releaseDate"),
                     genre = item.getString("genre"),
                     description = item.getString("description"),
-                    performers = getListPerformers(item.getJSONArray("performers")
-                ))
+                    performers = getListPerformers(item.getJSONArray("performers")),
+                    tracksString = getListTracks(item.getJSONArray("tracks"))
+                )
                 onComplete(album)
             },
             Response.ErrorListener {
