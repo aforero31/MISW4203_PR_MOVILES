@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/usersFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.UsersFragment"
+        android:label="@string/title_home_fragment"
+        tools:layout="@layout/users_fragment" >
+        <action
+            android:id="@+id/action_usersFragment_to_menuUsuarioFragment"
+            app:destination="@id/menuUsuarioFragment" />
+        <action
+            android:id="@+id/action_usersFragment_to_menuCollectorFragment"
+            app:destination="@id/menuCollectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuUsuarioFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.MenuUsuarioFragment"
+        android:label="@string/title_menu_usuario_fragment"
+        tools:layout="@layout/menu_usuario_fragment" >
+        <action
+            android:id="@+id/action_menuUsuarioFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
+        <action
+            android:id="@+id/action_menuUsuarioFragment_to_musicianFragment2"
+            app:destination="@id/musicianFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuCollectorFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.MenuCollectorFragment"
+        android:label="@string/title_menu_collector_fragment"
+        tools:layout="@layout/fragment_menu_collector" />
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.AlbumFragment"
+        android:label="@string/title_album_fragment"
+        tools:layout="@layout/album_fragment" >
+        <action
+            android:id="@+id/action_albumFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicianFragment2"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.MusicianFragment"
+        android:label="@string/title_musician_fragment"
+        tools:layout="@layout/musician_fragment" />
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.AlbumDetailFragment"
+        android:label="@string/title_album_detail_fragment" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
