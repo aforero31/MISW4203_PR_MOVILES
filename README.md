@@ -7,8 +7,9 @@ Aplicación para la consulta y administración de vinilos de colección
 ## Tabla de contenido
 
 - [Información general](#información-general)
-- [tecnologías usadas](#tecnologías-usadas)
+- [Tecnologías usadas](#tecnologías-usadas)
 - [Setup Android Studio](#setup-android-studio)
+- [Setup dispositivo móvil](#setup-dispositivo-móvil)
 
 ## Información general
 
@@ -48,4 +49,10 @@ git clone https://github.com/aforero31/MISW4203_PR_MOVILES.git
 
 ![image](https://user-images.githubusercontent.com/99229818/200216376-38466c81-16b4-4ab8-aa4e-2b0e055f9d87.png)
 
+## Setup dispositivo móvil
 
+Para hacer el depliegue en el dispositivo móvil se debe descargar el apk del siguiente link
+
+* [Link de descarga .apk](https://github.com/aforero31/MISW4203_PR_MOVILES/raw/develop/app/release/app-release.apk).
+
+Se deben dar los permisos necesarios para instalar la aplicación
