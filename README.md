@@ -1,4 +1,4 @@
-# Móviles Vinils-APP grupo 32
+# Móviles Vynils-APP grupo 32
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 
@@ -13,7 +13,7 @@ Aplicación para la consulta y administración de vinilos de colección
 
 ## Información general
 
-Vinils-APP es una aplicación desarrollada para ser deplegada en dispositivos Android, la cual provee a los usuarios una interfáz para la consulta de vinilos de colección y su información relacionada. Además, permite a los coleccionistas agregar albumes, actualizar los álbumes y su información.
+Vynils-APP es una aplicación desarrollada para ser deplegada en dispositivos Android, la cual provee a los usuarios una interfáz para la consulta de vinilos de colección y su información relacionada. Además, permite a los coleccionistas agregar albumes, actualizar los álbumes y su información.
 
 ## Tecnologías usadas
 
