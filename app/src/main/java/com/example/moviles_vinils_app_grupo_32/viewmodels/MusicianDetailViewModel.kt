@@ -47,7 +47,7 @@ class MusicianDetailViewModel (application: Application, musicianId: Int): Andro
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MusicianDetailViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumDetailViewModel(app, musicianId) as T
+                return MusicianDetailViewModel(app, musicianId) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
