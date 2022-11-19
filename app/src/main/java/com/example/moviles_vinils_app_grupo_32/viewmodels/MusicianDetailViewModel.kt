@@ -5,7 +5,7 @@ import androidx.lifecycle.*
 import com.example.moviles_vinils_app_grupo_32.models.Musician
 import com.example.moviles_vinils_app_grupo_32.repositories.MusicianDetailRepository
 
-class MusicianDetailViewModel (application: Application, musicianId: Int) :  AndroidViewModel(application){
+class MusicianDetailViewModel (application: Application, musicianId: Int): AndroidViewModel(application) {
     private val musicianDetailRepository = MusicianDetailRepository(application)
 
     private val _musician = MutableLiveData<Musician>()
@@ -47,7 +47,7 @@ class MusicianDetailViewModel (application: Application, musicianId: Int) :  And
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MusicianDetailViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return MusicianDetailViewModel(app, musicianId) as T
+                return AlbumDetailViewModel(app, musicianId) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

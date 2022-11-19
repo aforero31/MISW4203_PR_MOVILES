@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviles_vinils_app_grupo_32.R
+import com.example.moviles_vinils_app_grupo_32.databinding.MusicianDetailItemBinding
 import com.example.moviles_vinils_app_grupo_32.models.Musician
 
 class MusicianDetailAdapter : RecyclerView.Adapter<MusicianDetailAdapter.MusicianDetailViewHolder>() {
