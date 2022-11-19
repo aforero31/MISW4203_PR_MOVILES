@@ -62,8 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/musicianDetailFragment"
-        android:name="com.example.moviles_vinils_app_grupo_32.ui.MusicianDetailFragment"
-        android:label="Musician">
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.MusicianDetailFragment">
         <argument
             android:name="musicianId"
             app:argType="integer" />
