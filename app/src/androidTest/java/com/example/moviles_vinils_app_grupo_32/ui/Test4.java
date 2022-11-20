@@ -34,18 +34,7 @@ public class Test4 {
         ViewInteraction artistsBtn = onView(allOf(withId(R.id.button4), withText("Artistas"),isDisplayed()));
         artistsBtn.perform(click());
 
-        ViewInteraction imageView = onView(allOf(withId(R.id.textView1a), withText("Rubén"))).check(matches(isDisplayed()));
+        ViewInteraction imageView = onView(allOf(withId(R.id.textView1a), withText("Rubén Blades"))).check(matches(isDisplayed()));
         imageView.perform(click());
     }
-/*
-    @Test(expected = PerformException.class)
-    public void itemWithText_doesNotExist() {
-        // Attempt to scroll to an item that contains the special text.
-        onView(ViewMatchers.withId(R.id.albumsRv))
-                // scrollTo will fail the test if no item matches.
-                .perform(RecyclerViewActions.scrollTo(
-                        hasDescendant(withText("not in the list"))
-                ));
-    }
-//*/
 }
