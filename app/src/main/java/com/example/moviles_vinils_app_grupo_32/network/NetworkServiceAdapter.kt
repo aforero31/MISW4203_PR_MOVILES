@@ -143,7 +143,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
 
     fun getCollector(collectorId: Int, onComplete:(resp:Collector)->Unit, onError: (error:VolleyError)->Unit){
-        requestQueue.add(getRequest("collectors/100",
+        requestQueue.add(getRequest("collectors/$collectorId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
                 val collector = Collector(
@@ -160,6 +160,30 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("collectors",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Collector>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i,
+                        Collector(
+                            collectorId = item.getInt("id"),
+                            name = item.getString("name"),
+                            telephone = item.getString("telephone"),
+                            email = item.getString("email"),
+                            albums = emptyList()
+                    ))
+                }
+                onComplete(list)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+    }
+
+
     private fun getListOfCollectorAlbums(listOfCollectorAlbum: JSONArray): List<CollectorAlbum> {
         val list = mutableListOf<CollectorAlbum>()
         for (i in 0 until listOfCollectorAlbum.length()) {
@@ -170,6 +194,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         }
         return list
     }
+
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)

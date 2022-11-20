@@ -64,14 +64,14 @@ class MainActivityTest {
         )
         materialButton.perform(click())
 
-        val textView = onView(
-            allOf(
-                withId(R.id.textView), withText("Usuario Menu"),
-                withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("Usuario Menu")))
+//        val textView = onView(
+//            allOf(
+//                withId(R.id.textView), withText("Usuario Menu"),
+//                withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
+//                isDisplayed()
+//            )
+//        )
+//        textView.check(matches(withText("Usuario Menu")))
 
         val button4 = onView(
             allOf(

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviles_vinils_app_grupo_32.databinding.CollectorDetailFragmentBinding
@@ -45,9 +46,9 @@ class CollectorDetailFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = "Collector"
-        //val args: CollectorDetailFragmentArgs by navArgs()
+        val args: CollectorDetailFragmentArgs by navArgs()
         viewModel =
-            ViewModelProvider(this, CollectorDetailViewModel.Factory(activity.application, 100))[CollectorDetailViewModel::class.java]
+            ViewModelProvider(this, CollectorDetailViewModel.Factory(activity.application, args.collectorId))[CollectorDetailViewModel::class.java]
         viewModel.collector.observe(viewLifecycleOwner, Observer<Collector> {
             it.apply {
                 viewModelAdapter!!.albums = this.albums

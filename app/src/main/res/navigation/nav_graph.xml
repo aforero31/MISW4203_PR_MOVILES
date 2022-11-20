@@ -16,12 +16,6 @@
         <action
             android:id="@+id/action_usersFragment_to_menuCollectorFragment"
             app:destination="@id/menuCollectorFragment" />
-        <action
-            android:id="@+id/action_usersFragment_to_collectorDetailFragment"
-            app:destination="@id/collectorDetailFragment" />
-        <action
-            android:id="@+id/action_usersFragment_to_collectorDetailFragment2"
-            app:destination="@id/collectorDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuUsuarioFragment"
@@ -34,6 +28,9 @@
         <action
             android:id="@+id/action_menuUsuarioFragment_to_musicianFragment2"
             app:destination="@id/musicianFragment2" />
+        <action
+            android:id="@+id/action_menuUsuarioFragment_to_collectorFragment"
+            app:destination="@id/collectorFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuCollectorFragment"
@@ -82,4 +79,14 @@
             android:name="collectorId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/collectorFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.CollectorFragment"
+        android:label="@string/title_collector_fragment"
+        tools:layout="@layout/collector_fragment" >
+        <action
+            android:id="@+id/action_collectorFragment_to_collectorDetailFragment"
+            app:destination="@id/collectorDetailFragment" />
+    </fragment>
+
 </navigation>

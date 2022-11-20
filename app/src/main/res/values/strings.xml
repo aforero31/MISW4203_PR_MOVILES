@@ -6,11 +6,14 @@
     <string name="usuario_title">Usuario Menu</string>
     <string name="boton_albums">Albums</string>
     <string name="boton_artistas">Artistas</string>
+    <string name="boton_coleccionistas">Coleccionistas</string>
     <string name="title_albums">Albums</string>
     <string name="title_album">Album</string>
+    <string name="title_collectors">Coleccionistas</string>
     <string name="title_home_fragment">Vinilos</string>
     <string name="title_menu_usuario_fragment">Visitante</string>
     <string name="title_album_fragment">Albums</string>
+    <string name="title_collector_fragment">Coleccionistas</string>
     <string name="title_musician_fragment">Artistas</string>
     <string name="title_musician_detail_fragment">Artista</string>
     <string name="title_album_detail_fragment">Album</string>
