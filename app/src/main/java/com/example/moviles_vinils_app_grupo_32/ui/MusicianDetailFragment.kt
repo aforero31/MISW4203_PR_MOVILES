@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviles_vinils_app_grupo_32.R
 import com.example.moviles_vinils_app_grupo_32.databinding.MusicianDetailFragmentBinding
@@ -32,6 +33,12 @@ class MusicianDetailFragment : Fragment() {
         val view = binding.root
         viewModelAdapter = MusicianDetailAdapter()
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        recyclerView = binding.musicianDetailRv
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = viewModelAdapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
