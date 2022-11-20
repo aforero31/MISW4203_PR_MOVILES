@@ -11,6 +11,9 @@ import com.android.volley.toolbox.Volley
 import com.example.moviles_vinils_app_grupo_32.models.*
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
@@ -28,29 +31,29 @@ class NetworkServiceAdapter constructor(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error:VolleyError)->Unit){
+    suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont ->
         requestQueue.add(getRequest("albums",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
-                val list = mutableListOf<Album>()
                 var item:JSONObject? = null
+                val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
                     item = resp.getJSONObject(i)
                     list.add(i, Album(albumId = item.getInt("id"),
                                     name = item.getString("name"),
                                     cover = item.getString("cover"),
-                                    recordLabel = item.getString("recordLabel"),
-                                    releaseDate = item.getString("releaseDate"),
-                                    genre = item.getString("genre"),
-                                    description = item.getString("description"),
+                                    recordLabel = null,
+                                    releaseDate = null,
+                                    genre = null,
+                                    description = null,
                                     performers = getListPerformers(item.getJSONArray("performers")),
-                                    tracksString = getListTracks(item.getJSONArray("tracks"))
+                                    tracksString = null
                             ))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
 
@@ -85,7 +88,8 @@ class NetworkServiceAdapter constructor(context: Context) {
         return list
     }
 
-    fun getAlbum(albumId: Int, onComplete:(resp:Album)->Unit, onError: (error:VolleyError)->Unit){
+
+    suspend fun getAlbum(albumId: Int) = suspendCoroutine<Album>{ cont ->
         requestQueue.add(getRequest("albums/$albumId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
@@ -99,14 +103,15 @@ class NetworkServiceAdapter constructor(context: Context) {
                     performers = getListPerformers(resp.getJSONArray("performers")),
                     tracksString = getListTracks(resp.getJSONArray("tracks"))
                 )
-                onComplete(album)
+                cont.resume(album)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
 
     }
-    fun getMusicians(onComplete:(resp:List<Musician>)->Unit, onError: (error:VolleyError)->Unit) {
+
+    suspend fun getMusicians() = suspendCoroutine<List<Musician>> { cont ->
         requestQueue.add(getRequest("musicians",
             Response.Listener<String> { response ->
                 Log.d("tagb", response)
@@ -121,14 +126,15 @@ class NetworkServiceAdapter constructor(context: Context) {
                         description = item.getString("description"),
                         birthDate = item.getString("birthDate")))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
                 Log.d("", it.message.toString())
             }))
     }
-    fun getMusician(musicianId: Int, onComplete:(resp:Musician)->Unit, onError: (error:VolleyError)->Unit){
+
+    suspend fun getMusician(musicianId: Int) = suspendCoroutine<Musician>{ cont ->
         requestQueue.add(getRequest("musicians/$musicianId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
@@ -138,15 +144,15 @@ class NetworkServiceAdapter constructor(context: Context) {
                     description = resp.getString("description"),
                     birthDate = resp.getString("birthDate")
                 )
-                onComplete(musician)
+                cont.resume(musician)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
 
     }
 
-    fun getCollector(collectorId: Int, onComplete:(resp:Collector)->Unit, onError: (error:VolleyError)->Unit){
+    suspend fun getCollector(collectorId: Int) = suspendCoroutine<Collector>{ cont ->
         requestQueue.add(getRequest("collectors/$collectorId",
             Response.Listener<String> { response ->
                 val resp = JSONObject(response)
@@ -157,14 +163,14 @@ class NetworkServiceAdapter constructor(context: Context) {
                     email = resp.getString("email"),
                     albums = this.getListOfCollectorAlbums(resp.getJSONArray("collectorAlbums"))
                 )
-                onComplete(collector)
+                cont.resume(collector)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
 
-    fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error:VolleyError)->Unit){
+    suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont ->
         requestQueue.add(getRequest("collectors",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
@@ -181,10 +187,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                             albums = emptyList()
                     ))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
 

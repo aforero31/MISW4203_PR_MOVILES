@@ -4,10 +4,10 @@ data class Album (
     val albumId:Int,
     val name:String,
     val cover:String,
-    val releaseDate:String,
-    val description:String,
-    val genre:String,
-    val recordLabel:String,
+    val releaseDate:String?,
+    val description:String?,
+    val genre:String?,
+    val recordLabel:String?,
     val performers: List<Performers>,
-    val tracksString: String
+    val tracksString: String?
 )
