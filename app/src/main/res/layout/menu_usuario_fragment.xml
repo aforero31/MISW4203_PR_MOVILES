@@ -10,11 +10,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/usuario_title"/>
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/usuario_title"/>-->
 
         <Button
             android:id="@+id/button3"
@@ -27,6 +27,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/boton_artistas" />
+
+        <Button
+            android:id="@+id/collectors_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/boton_coleccionistas" />
 
     </LinearLayout>
 

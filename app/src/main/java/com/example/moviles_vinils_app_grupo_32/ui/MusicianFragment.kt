@@ -44,7 +44,7 @@ class MusicianFragment : Fragment()  {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = "Musicians"
+        activity.actionBar?.title = "Artistas"
         viewModel = ViewModelProvider(this, MusicianViewModel.Factory(activity.application)).get(MusicianViewModel::class.java)
         viewModel.musicians.observe(viewLifecycleOwner, Observer<List<Musician>> {
             it.apply {

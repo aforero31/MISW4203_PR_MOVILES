@@ -2,12 +2,20 @@
     <string name="app_name">moviles-vinils-app-grupo-32</string>
     <string name="title_menu">Vinils-APP</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="collector_title">Collector Menu</string>
+    <string name="collector_title">Collector Menu - Disponible en próximos releases</string>
     <string name="usuario_title">Usuario Menu</string>
     <string name="boton_albums">Albums</string>
     <string name="boton_artistas">Artistas</string>
+    <string name="boton_coleccionistas">Coleccionistas</string>
     <string name="title_albums">Albums</string>
     <string name="title_album">Album</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_collectors">Coleccionistas</string>
+    <string name="title_home_fragment">Vinilos</string>
+    <string name="title_menu_usuario_fragment">Visitante</string>
+    <string name="title_album_fragment">Albums</string>
+    <string name="title_collector_fragment">Coleccionistas</string>
+    <string name="title_musician_fragment">Artistas</string>
+    <string name="title_musician_detail_fragment">Artista</string>
+    <string name="title_album_detail_fragment">Album</string>
+    <string name="title_menu_collector_fragment">Coleccionista</string>
 </resources>
