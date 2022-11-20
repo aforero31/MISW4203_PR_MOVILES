@@ -8,9 +8,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.moviles_vinils_app_grupo_32.models.Album
-import com.example.moviles_vinils_app_grupo_32.models.Musician
-import com.example.moviles_vinils_app_grupo_32.models.Performers
+import com.example.moviles_vinils_app_grupo_32.models.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -142,6 +140,35 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onError(it)
             }))
 
+    }
+
+    fun getCollector(collectorId: Int, onComplete:(resp:Collector)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("collectors/100",
+            Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+                val collector = Collector(
+                    collectorId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    telephone = resp.getString("telephone"),
+                    email = resp.getString("email"),
+                    albums = this.getListOfCollectorAlbums(resp.getJSONArray("collectorAlbums"))
+                )
+                onComplete(collector)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+    }
+
+    private fun getListOfCollectorAlbums(listOfCollectorAlbum: JSONArray): List<CollectorAlbum> {
+        val list = mutableListOf<CollectorAlbum>()
+        for (i in 0 until listOfCollectorAlbum.length()) {
+            val item = listOfCollectorAlbum.getJSONObject(i)
+            list.add(i, CollectorAlbum(id = item.getInt("id"),
+                price = item.getInt("price"),
+                status = item.getString("status")))
+        }
+        return list
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {

@@ -37,7 +37,7 @@ class UsersFragment : Fragment(), OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id){
             R.id.button -> _navController?.navigate(R.id.action_usersFragment_to_menuUsuarioFragment)
-            R.id.button2 -> _navController?.navigate(R.id.action_usersFragment_to_menuCollectorFragment)
+            R.id.button2 -> _navController?.navigate(R.id.action_usersFragment_to_collectorDetailFragment)
         }
 
     }
