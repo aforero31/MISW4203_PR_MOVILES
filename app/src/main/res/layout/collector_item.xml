@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@null">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -20,14 +21,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/white"
-            app:strokeWidth="1dp">
+            app:strokeWidth="1dp"
+            android:background="@null">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:background="@null">
 
                 <TextView
                     android:id="@+id/collector_item_name"
@@ -36,14 +39,16 @@
                     android:text="@{collector.name}"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_black"
-                    android:textAppearance="?attr/textAppearanceHeadline5"/>
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:background="@null"/>
 
                 <TextView
                     android:id="@+id/collector_item_telephone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@{collector.name}" />
+                    android:text="@{collector.email}"
+                    android:background="@null"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

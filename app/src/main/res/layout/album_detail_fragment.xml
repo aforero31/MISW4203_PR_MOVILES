@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.AlbumDetailFragment"
     android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp">
+    android:layout_marginEnd="16dp"
+    android:background="@null">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -17,6 +18,7 @@
         android:id="@+id/albumDetailRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/album_detail_item"/>
+        tools:listitem="@layout/album_detail_item"
+        android:background="@null"/>
 
 </FrameLayout>
