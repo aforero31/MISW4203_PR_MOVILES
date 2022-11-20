@@ -46,7 +46,7 @@ class MusicianDetailFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.title_musician_fragment)
+        activity.actionBar?.title = getString(R.string.title_musician_detail_fragment)
         val args: MusicianDetailFragmentArgs by navArgs()
         viewModel = ViewModelProvider(this, MusicianDetailViewModel.Factory(activity.application, args.musicianId)).get(
             MusicianDetailViewModel::class.java

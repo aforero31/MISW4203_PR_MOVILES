@@ -11,7 +11,8 @@
     <string name="title_home_fragment">Vinilos</string>
     <string name="title_menu_usuario_fragment">Visitante</string>
     <string name="title_album_fragment">Albums</string>
-    <string name="title_musician_fragment">Artista</string>
+    <string name="title_musician_fragment">Artistas</string>
+    <string name="title_musician_detail_fragment">Artista</string>
     <string name="title_album_detail_fragment">Album</string>
     <string name="title_menu_collector_fragment">Coleccionista</string>
 </resources>
