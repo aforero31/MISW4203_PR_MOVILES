@@ -114,10 +114,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
                     list.add(i, Musician(musicianId = item.getInt("id"),
-                                        name = item.getString("name"),
-                                        image = item.getString("image"),
-                                        description = item.getString("description"),
-                                        birthDate = item.getString("birthDate")))
+                        name = item.getString("name"),
+                        image = item.getString("image"),
+                        description = item.getString("description"),
+                        birthDate = item.getString("birthDate")))
                 }
                 onComplete(list)
             },
@@ -125,6 +125,23 @@ class NetworkServiceAdapter constructor(context: Context) {
                 onError(it)
                 Log.d("", it.message.toString())
             }))
+    }
+    fun getMusician(musicianId: Int, onComplete:(resp:Musician)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("musicians/$musicianId",
+            Response.Listener<String> { response ->
+                val resp = JSONObject(response)
+                val musician = Musician(musicianId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    image = resp.getString("image"),
+                    description = resp.getString("description"),
+                    birthDate = resp.getString("birthDate")
+                )
+                onComplete(musician)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {

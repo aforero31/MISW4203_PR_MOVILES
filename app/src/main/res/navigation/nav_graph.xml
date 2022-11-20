@@ -47,13 +47,24 @@
         android:id="@+id/musicianFragment2"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.MusicianFragment"
         android:label="@string/title_musician_fragment"
-        tools:layout="@layout/musician_fragment" />
+        tools:layout="@layout/musician_fragment">
+        <action
+            android:id="@+id/action_musicianFragment2_to_musicianDetailFragment"
+            app:destination="@id/musicianDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/albumDetailFragment"
         android:name="com.example.moviles_vinils_app_grupo_32.ui.AlbumDetailFragment"
         android:label="@string/title_album_detail_fragment" >
         <argument
             android:name="albumId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicianDetailFragment"
+        android:name="com.example.moviles_vinils_app_grupo_32.ui.MusicianDetailFragment">
+        <argument
+            android:name="musicianId"
             app:argType="integer" />
     </fragment>
 </navigation>
