@@ -28,6 +28,12 @@
             android:layout_height="wrap_content"
             android:text="@string/boton_artistas" />
 
+        <Button
+            android:id="@+id/collectors_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/boton_coleccionistas" />
+
     </LinearLayout>
 
 </FrameLayout>
