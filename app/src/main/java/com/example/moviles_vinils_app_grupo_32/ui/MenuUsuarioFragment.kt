@@ -25,8 +25,9 @@ class MenuUsuarioFragment : Fragment(), OnClickListener {
 
         val userMenuButton: Button = view.findViewById(R.id.button3)
         userMenuButton.setOnClickListener(this)
-        val collectorMenuButton: Button = view.findViewById(R.id.button4)
-        userMenuButton.setOnClickListener(this)
+        val artistMenuButton: Button = view.findViewById(R.id.button4)
+        artistMenuButton.setOnClickListener(this)
+        val collectorMenuButton: Button = view.findViewById(R.id.collectors_button)
         collectorMenuButton.setOnClickListener(this)
         return view
     }
@@ -40,6 +41,7 @@ class MenuUsuarioFragment : Fragment(), OnClickListener {
         when (v?.id) {
             R.id.button3 -> _navController?.navigate(R.id.action_menuUsuarioFragment_to_albumFragment)
             R.id.button4 -> _navController?.navigate(R.id.action_menuUsuarioFragment_to_musicianFragment2)
+            R.id.collectors_button -> _navController?.navigate(R.id.action_menuUsuarioFragment_to_collectorFragment)
         }
     }
 }
