@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.MusicianFragment"
     android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp">
+    android:layout_marginEnd="16dp"
+    android:background="@null">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -17,6 +18,7 @@
         android:id="@+id/musiciansRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/musician_item"/>
+        tools:listitem="@layout/musician_item"
+        android:background="@null"/>
 
 </FrameLayout>
