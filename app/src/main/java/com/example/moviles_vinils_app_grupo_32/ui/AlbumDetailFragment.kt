@@ -17,7 +17,6 @@ import com.example.moviles_vinils_app_grupo_32.models.Album
 import com.example.moviles_vinils_app_grupo_32.ui.adapters.AlbumDetailAdapter
 import com.example.moviles_vinils_app_grupo_32.viewmodels.AlbumDetailViewModel
 
-
 class AlbumDetailFragment : Fragment() {
 
     private var _binding: AlbumDetailFragmentBinding? = null
@@ -25,7 +24,6 @@ class AlbumDetailFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumDetailViewModel
     private var viewModelAdapter: AlbumDetailAdapter? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
