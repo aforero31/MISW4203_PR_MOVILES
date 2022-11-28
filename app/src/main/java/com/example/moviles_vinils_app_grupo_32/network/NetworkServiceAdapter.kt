@@ -6,6 +6,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.moviles_vinils_app_grupo_32.models.*
@@ -194,6 +195,34 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    fun postAlbum(album: Album,  onComplete:(resp:Album)->Unit , onError: (error:VolleyError)->Unit){
+        val body = JSONObject()
+        body.put("name", album.name)
+        body.put("cover", album.cover)
+        body.put("recordLabel", album.recordLabel)
+        body.put("releaseDate", album.releaseDate)
+        body.put("genre", album.genre)
+        body.put("description", album.description)
+
+        requestQueue.add(postRequest("albums", body,
+            Response.Listener<JSONObject> { resp ->
+                val album = Album(albumId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    cover = resp.getString("cover"),
+                    recordLabel = resp.getString("recordLabel"),
+                    releaseDate = resp.getString("releaseDate"),
+                    genre = resp.getString("genre"),
+                    description = resp.getString("description"),
+                    performers = null,
+                    tracksString = null
+                )
+                onComplete(album)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+
+    }
 
     private fun getListOfCollectorAlbums(listOfCollectorAlbum: JSONArray): List<CollectorAlbum> {
         val list = mutableListOf<CollectorAlbum>()
@@ -206,7 +235,9 @@ class NetworkServiceAdapter constructor(context: Context) {
         }
         return list
     }
-
+    private fun postRequest(path: String, requestBody: JSONObject , responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener): JsonObjectRequest {
+        return JsonObjectRequest(Request.Method.POST, BASE_URL+path, requestBody, responseListener, errorListener)
+    }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
