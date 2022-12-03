@@ -20,4 +20,6 @@
     <string name="title_menu_collector_fragment">Coleccionista</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_album">Crear Álbum</string>
+    <string name="add_track_to_album_title">Agregar canciones al albúm</string>
 </resources>
