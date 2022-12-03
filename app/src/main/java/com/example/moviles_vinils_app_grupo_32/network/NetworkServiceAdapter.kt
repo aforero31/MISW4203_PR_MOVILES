@@ -5,7 +5,6 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -195,16 +194,8 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
-    fun postAlbum(album: Album,  onComplete:(resp:Album)->Unit , onError: (error:VolleyError)->Unit){
-        val body = JSONObject()
-        body.put("name", album.name)
-        body.put("cover", album.cover)
-        body.put("recordLabel", album.recordLabel)
-        body.put("releaseDate", album.releaseDate)
-        body.put("genre", album.genre)
-        body.put("description", album.description)
-
-        requestQueue.add(postRequest("albums", body,
+    suspend fun postAlbum(album: Album) = suspendCoroutine<Album>{ cont ->
+        requestQueue.add(postRequest("albums", getPostAlbumBody(album),
             Response.Listener<JSONObject> { resp ->
                 val album = Album(albumId = resp.getInt("id"),
                     name = resp.getString("name"),
@@ -216,12 +207,27 @@ class NetworkServiceAdapter constructor(context: Context) {
                     performers = null,
                     tracksString = null
                 )
-                onComplete(album)
+                cont.resume(album)
             },
             Response.ErrorListener {
-                onError(it)
+                cont.resumeWithException(it)
             }))
 
+    }
+
+    suspend fun postTrack(albumId: Int, track: Track) = suspendCoroutine<Track> { cont ->
+        requestQueue.add(postRequest("albums/$albumId/tracks", getPostTrackBody(track),
+            Response.Listener<JSONObject> { resp ->
+                val track = Track(
+                    id = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    duration = resp.getString("duration")
+                )
+                cont.resume(track)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
     }
 
     private fun getListOfCollectorAlbums(listOfCollectorAlbum: JSONArray): List<CollectorAlbum> {
@@ -235,6 +241,25 @@ class NetworkServiceAdapter constructor(context: Context) {
         }
         return list
     }
+
+    private fun getPostAlbumBody(album: Album): JSONObject{
+        val body = JSONObject()
+        body.put("name", album.name)
+        body.put("cover", album.cover)
+        body.put("recordLabel", album.recordLabel)
+        body.put("releaseDate", album.releaseDate)
+        body.put("genre", album.genre)
+        body.put("description", album.description)
+        return body
+    }
+
+    private fun getPostTrackBody(track: Track): JSONObject{
+        val body = JSONObject()
+        body.put("name", track.name)
+        body.put("duration", track.duration)
+        return body
+    }
+
     private fun postRequest(path: String, requestBody: JSONObject , responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener): JsonObjectRequest {
         return JsonObjectRequest(Request.Method.POST, BASE_URL+path, requestBody, responseListener, errorListener)
     }
