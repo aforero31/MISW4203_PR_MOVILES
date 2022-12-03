@@ -37,7 +37,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="centerCrop"
-                    app:imageUrl= "@{album.cover}"/>
+                    app:imageUrl= "@{album.cover}"
+                    android:contentDescription="@{`Cover` + album.name}"/>
 
                 <TextView
                     android:id="@+id/textView7"
