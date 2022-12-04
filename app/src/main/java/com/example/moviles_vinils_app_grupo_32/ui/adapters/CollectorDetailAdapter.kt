@@ -7,8 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviles_vinils_app_grupo_32.R
 import com.example.moviles_vinils_app_grupo_32.databinding.CollectorDetailItemBinding
-import com.example.moviles_vinils_app_grupo_32.models.Album
-import com.example.moviles_vinils_app_grupo_32.models.Collector
 import com.example.moviles_vinils_app_grupo_32.models.CollectorAlbum
 
 class CollectorDetailAdapter : RecyclerView.Adapter<CollectorDetailAdapter.CollectorDetailViewHolder>() {

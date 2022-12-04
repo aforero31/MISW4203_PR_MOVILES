@@ -5,7 +5,7 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.moviles_vinils_app_grupo_32.models.*
@@ -194,6 +194,41 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    suspend fun postAlbum(album: Album) = suspendCoroutine<Album>{ cont ->
+        requestQueue.add(postRequest("albums", getPostAlbumBody(album),
+            Response.Listener<JSONObject> { resp ->
+                val album = Album(albumId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    cover = resp.getString("cover"),
+                    recordLabel = resp.getString("recordLabel"),
+                    releaseDate = resp.getString("releaseDate"),
+                    genre = resp.getString("genre"),
+                    description = resp.getString("description"),
+                    performers = null,
+                    tracksString = null
+                )
+                cont.resume(album)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+
+    }
+
+    suspend fun postTrack(albumId: Int, track: Track) = suspendCoroutine<Track> { cont ->
+        requestQueue.add(postRequest("albums/$albumId/tracks", getPostTrackBody(track),
+            Response.Listener<JSONObject> { resp ->
+                val track = Track(
+                    id = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    duration = resp.getString("duration")
+                )
+                cont.resume(track)
+            },
+            Response.ErrorListener {
+                cont.resumeWithException(it)
+            }))
+    }
 
     private fun getListOfCollectorAlbums(listOfCollectorAlbum: JSONArray): List<CollectorAlbum> {
         val list = mutableListOf<CollectorAlbum>()
@@ -207,6 +242,27 @@ class NetworkServiceAdapter constructor(context: Context) {
         return list
     }
 
+    private fun getPostAlbumBody(album: Album): JSONObject{
+        val body = JSONObject()
+        body.put("name", album.name)
+        body.put("cover", album.cover)
+        body.put("recordLabel", album.recordLabel)
+        body.put("releaseDate", album.releaseDate)
+        body.put("genre", album.genre)
+        body.put("description", album.description)
+        return body
+    }
+
+    private fun getPostTrackBody(track: Track): JSONObject{
+        val body = JSONObject()
+        body.put("name", track.name)
+        body.put("duration", track.duration)
+        return body
+    }
+
+    private fun postRequest(path: String, requestBody: JSONObject , responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener): JsonObjectRequest {
+        return JsonObjectRequest(Request.Method.POST, BASE_URL+path, requestBody, responseListener, errorListener)
+    }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
