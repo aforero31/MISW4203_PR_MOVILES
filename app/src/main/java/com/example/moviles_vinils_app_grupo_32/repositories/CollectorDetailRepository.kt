@@ -2,9 +2,7 @@ package com.example.moviles_vinils_app_grupo_32.repositories
 
 import android.app.Application
 import android.util.Log
-import com.android.volley.VolleyError
 import com.example.moviles_vinils_app_grupo_32.models.Collector
-import com.example.moviles_vinils_app_grupo_32.models.Musician
 import com.example.moviles_vinils_app_grupo_32.network.NetworkServiceAdapter
 
 class CollectorDetailRepository (val application: Application){

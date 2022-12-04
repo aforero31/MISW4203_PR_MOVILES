@@ -1,7 +1,5 @@
 package com.example.moviles_vinils_app_grupo_32.models
 
-import kotlinx.serialization.Serializable
-
 data class Album (
     val albumId:Int?,
     val name:String,

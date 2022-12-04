@@ -1,7 +1,6 @@
 package com.example.moviles_vinils_app_grupo_32.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.moviles_vinils_app_grupo_32.models.Album
 import com.example.moviles_vinils_app_grupo_32.repositories.AlbumRepository
